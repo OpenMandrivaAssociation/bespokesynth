@@ -1,2 +1,0 @@
-# bespokesynth
-Software modular synth
