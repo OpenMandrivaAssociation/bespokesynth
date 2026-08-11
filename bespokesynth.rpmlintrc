@@ -1,3 +1,3 @@
 # The bundled libraries have no soname and we
 # cannot change that
-addFilter("E: invalid-soname")
+addFilter("invalid-soname")

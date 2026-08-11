@@ -18,7 +18,8 @@ BuildRequires:		cmake >= 3.16
 BuildRequires:		make
 BuildRequires:		git
 BuildRequires:		imagemagick
-BuildRequires:		vst3sdk
+# Bundled JUCE 7 is incompatible with cooker vst3sdk
+#BuildRequires:		vst3sdk
 BuildRequires:		pkgconfig(flac)
 BuildRequires:		pkgconfig(gl)
 BuildRequires:		pkgconfig(jsoncpp)
@@ -96,7 +97,8 @@ needed by the program but not yet provided by OMV.
 %build
 %cmake \
 	-DBESPOKE_SYSTEM_JSONCPP=ON \
-	-DBESPOKE_SYSTEM_PYBIND11=ON
+	-DBESPOKE_SYSTEM_PYBIND11=ON \
+	-DCMAKE_CXX_STANDARD=17
 
 %make_build
 
