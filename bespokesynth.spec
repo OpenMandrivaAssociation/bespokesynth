@@ -14,7 +14,6 @@ Url:		https://github.com/BespokeSynth
 Source0:	%{oname}-%{version}.tar.xz
 Source100:	%{name}.rpmlintrc
 Patch0:		bespokesynth-1.3.0-use-webkit2gtk41.patch
-Patch1:		bespokesynth-1.3.0-juce-audioprocessor-ctor.patch
 BuildRequires:		cmake >= 3.16
 BuildRequires:		make
 BuildRequires:		git
@@ -93,6 +92,11 @@ needed by the program but not yet provided by OMV.
 
 %prep
 %autosetup -p1 -n %{oname}-%{version}
+# JUCE headers are CRLF; patch(1) is unreliable. Clang rejects the decaying
+# array ctor (const short[n][2] -> pointer) against initializer_list.
+perl -i -pe 's/\r$//' libs/JUCE/modules/juce_audio_processors/processors/juce_AudioPluginInstance.h
+perl -i -0pe 's/template <size_t numLayouts>\s*AudioPluginInstance \(const short channelLayoutList\[numLayouts\]\[2\]\) : AudioProcessor \(channelLayoutList\) \{\}/AudioPluginInstance (const std::initializer_list<const short[2]>\x26 channelLayoutList)\n        : AudioProcessor (channelLayoutList) {}/' \
+	libs/JUCE/modules/juce_audio_processors/processors/juce_AudioPluginInstance.h
 
 
 %build
