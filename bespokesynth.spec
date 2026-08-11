@@ -14,6 +14,7 @@ Url:		https://github.com/BespokeSynth
 Source0:	%{oname}-%{version}.tar.xz
 Source100:	%{name}.rpmlintrc
 Patch0:		bespokesynth-1.3.0-use-webkit2gtk41.patch
+Patch1:		bespokesynth-1.3.0-juce-audioprocessor-ctor.patch
 BuildRequires:		cmake >= 3.16
 BuildRequires:		make
 BuildRequires:		git
