@@ -5,7 +5,7 @@
 Summary:		A software modular synth
 Name:		bespokesynth
 Version:		1.3.0
-Release:		2
+Release:		3
 License:		GPLv3
 Group:		Sound
 Url:		https://github.com/BespokeSynth
